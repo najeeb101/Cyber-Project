@@ -1,0 +1,11 @@
+Isolation check - 2026-10-28
+
+> docker port juice-shop
+3000/tcp -> 127.0.0.1:3000
+Result: bound to loopback only (not 0.0.0.0).
+
+> curl.exe -s -m 5 http://192.168.199.1:3000   (this host's LAN-side IP)
+HTTP code: 000 (connection failed)
+Result: target is NOT reachable via the host's network address. Isolation confirmed.
+
+Note: a check from a second physical device on the LAN is still recommended for the report.

@@ -1,0 +1,62 @@
+{
+  "@version": "SAMPLE-not-real",
+  "@generated": "synthetic fixture for testing evidence_toolkit.py only",
+  "site": [
+    {
+      "@name": "http://127.0.0.1:3000",
+      "@host": "127.0.0.1",
+      "@port": "3000",
+      "alerts": [
+        {
+          "pluginid": "40012",
+          "alert": "Cross Site Scripting (Reflected)",
+          "name": "Cross Site Scripting (Reflected)",
+          "riskcode": "3",
+          "confidence": "2",
+          "cweid": "79",
+          "count": "2",
+          "instances": [
+            { "uri": "http://127.0.0.1:3000/rest/products/search?q=test", "method": "GET" },
+            { "uri": "http://127.0.0.1:3000/rest/products/search?q=demo", "method": "GET" }
+          ]
+        },
+        {
+          "pluginid": "10202",
+          "alert": "Absence of Anti-CSRF Tokens",
+          "name": "Absence of Anti-CSRF Tokens",
+          "riskcode": "2",
+          "confidence": "2",
+          "cweid": "352",
+          "count": "3",
+          "instances": [
+            { "uri": "http://127.0.0.1:3000/", "method": "GET" }
+          ]
+        },
+        {
+          "pluginid": "10021",
+          "alert": "X-Content-Type-Options Header Missing",
+          "name": "X-Content-Type-Options Header Missing",
+          "riskcode": "1",
+          "confidence": "2",
+          "cweid": "693",
+          "count": "5",
+          "instances": [
+            { "uri": "http://127.0.0.1:3000/", "method": "GET" }
+          ]
+        },
+        {
+          "pluginid": "10096",
+          "alert": "Timestamp Disclosure",
+          "name": "Timestamp Disclosure",
+          "riskcode": "0",
+          "confidence": "1",
+          "cweid": "200",
+          "count": "8",
+          "instances": [
+            { "uri": "http://127.0.0.1:3000/main.js", "method": "GET" }
+          ]
+        }
+      ]
+    }
+  ]
+}

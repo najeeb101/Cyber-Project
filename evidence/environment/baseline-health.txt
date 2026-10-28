@@ -1,0 +1,17 @@
+Baseline health check - 2026-10-28
+Target: OWASP Juice Shop 20.3.0 (bkimminich/juice-shop:latest)
+Image digest: sha256:42843723a7bf4246aa5d63c324978b17ef296ac78434aeddd34c427bfb5853f4
+
+> docker ps --filter name=juice-shop
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS          PORTS                      NAMES
+deaad8e41d35   bkimminich/juice-shop   "/nodejs/bin/node /j…"   17 seconds ago   Up 16 seconds   127.0.0.1:3000->3000/tcp   juice-shop
+
+> curl.exe -sI http://127.0.0.1:3000
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Feature-Policy: payment 'self'
+X-Recruiting: /#/jobs
+Content-Type: text/html; charset=UTF-8
+Content-Length: 9984

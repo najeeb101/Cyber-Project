@@ -1,0 +1,22 @@
+﻿Captured 2026-10-28 against http://127.0.0.1:3000 (isolated local lab, Juice Shop 20.3.0). No credentials used.
+
+> curl.exe -s -D - -o NUL http://127.0.0.1:3000/
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Feature-Policy: payment 'self'
+X-Recruiting: /#/jobs
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Wed, 28 Oct 2026 16:56:40 GMT
+ETag: W/"2700-1a183714223"
+Content-Type: text/html; charset=UTF-8
+Content-Length: 9984
+Vary: Accept-Encoding
+Date: Wed, 28 Oct 2026 17:57:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+Check: Content-Security-Policy present? NO - header absent

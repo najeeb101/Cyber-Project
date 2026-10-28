@@ -1,0 +1,39 @@
+﻿Captured 2026-10-28 against http://127.0.0.1:3000 (isolated local lab, Juice Shop 20.3.0). No credentials used.
+
+> curl.exe -s http://127.0.0.1:3000/ftp   (no authentication)
+HTTP 200 directory listing. Files listed:
+ - quarantine ( bytes)
+ - acquisitions.md (909 bytes)
+ - announcement_encrypted.md (369237 bytes)
+ - coupons_2013.md.bak (131 bytes)
+ - eastere.gg (324 bytes)
+ - encrypt.pyc (573 bytes)
+ - incident-support.kdbx (3246 bytes)
+ - legal.md (3047 bytes)
+ - package-lock.json.bak (750353 bytes)
+ - package.json.bak (4263 bytes)
+ - suspicious_errors.yml (723 bytes)
+
+> curl.exe -s -I http://127.0.0.1:3000/ftp/acquisitions.md
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Feature-Policy: payment 'self'
+X-Recruiting: /#/jobs
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Mon, 12 Oct 2026 14:50:15 GMT
+ETag: W/"38d-1a13097c458"
+Content-Type: text/markdown; charset=UTF-8
+Content-Length: 909
+Vary: Accept-Encoding
+Date: Wed, 28 Oct 2026 17:57:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+Observation: unauthenticated users can list and download internal files. File contents are intentionally not stored here.
+
+
+
