@@ -34,17 +34,18 @@ Likelihood/Impact bands: Low / Medium / High, combined into an overall risk belo
 
 | ID | Finding | OWASP (2025) | Likelihood | Impact | Overall risk | CVSS v3.1 | Status |
 |---|---|---|---|---|---|---|---|
-| WA-003 | Unauthenticated `/ftp` directory listing exposes internal files | A05 Security Misconfiguration / A01 Broken Access Control | High | High | **High** | 7.5 (High) | Open |
+| WA-003 | Unauthenticated `/ftp` directory listing exposes internal files | A02 Security Misconfiguration / A01 Broken Access Control | High | High | **High** | 7.5 (High) | Open |
 | WA-004 | IDOR on `/rest/basket/:id` (read another user's basket) | A01 Broken Access Control | High | Medium–High | **High** | 6.5 (Medium) | Open |
-| WA-001 | Missing Content-Security-Policy header | A05 Security Misconfiguration | Low | Low–Medium | **Low–Medium** | 4.3* (Medium) | **Remediated + retested 2026-10-30** |
-| WA-002 | Overly permissive CORS (`Access-Control-Allow-Origin: *`) | A05 Security Misconfiguration | Medium | Low | **Low** | 5.3* (Medium) | Open |
+| WA-001 | Missing Content-Security-Policy header | A02 Security Misconfiguration | Low | Low–Medium | **Low–Medium** | 4.3* (Medium) | **Remediated + retested 2026-10-30** |
+| WA-002 | Overly permissive CORS (`Access-Control-Allow-Origin: *`) | A02 Security Misconfiguration | Medium | Low | **Low** | 5.3* (Medium) | Open |
 
 Ordered by overall risk (highest first). `*` = see the per-finding reasoning in §3 for why
 the qualitative rating sits below the raw CVSS base.
 
-> OWASP note: the 2025 Top 10 places Security Misconfiguration at **A05** and Broken Access
-> Control at **A01**. The finding records label misconfiguration as "A02"; align both to the
-> published 2025 list before submission, or cite the exact source used for the numbering.
+> OWASP numbering: per the official **OWASP Top 10:2025**, A01 is Broken Access Control and
+> A02 is Security Misconfiguration (Security Misconfiguration moved up from #5 in 2021). The
+> "A02:2025" labels in the finding records are correct and match this table.
+> Source: <https://top10.owasp.org/2025/>.
 
 ---
 
