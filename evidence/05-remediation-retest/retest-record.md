@@ -79,8 +79,8 @@ Confirmed output - before (`:3000`): no `Content-Security-Policy`. After (`:8080
 
 ### Reviewer sign-off
 
-- Retested by (Member 3): Team sign-off pending
-- Fix confirmed to address finding (Member 4): Team sign-off pending
+- Retested by (Member 3, Moaaz Mohamed): ____________  Date: ________
+- Fix confirmed to address finding (Member 4, Ahmed Hari): ____________  Date: ________
 
 ---
 

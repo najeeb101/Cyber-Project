@@ -62,12 +62,12 @@ The team authorizes testing only against the locally controlled OWASP Juice Shop
 
 | Member | Name | QUID | Approval/date |
 |---|---|---|---|
-| Member 1 | `TODO` | `TODO` | `TODO` |
-| Member 2 | `TODO` | `TODO` | `TODO` |
-| Member 3 | `TODO` | `TODO` | `TODO` |
-| Member 4 | `TODO` | `TODO` | `TODO` |
+| Member 1 | Najeeb Abdi | 202307172 | Approved 2026-10-28 |
+| Member 2 | Mohanad Elhabash | 202314448 | Approved 2026-10-28 |
+| Member 3 | Moaaz Mohamed | 202207862 | Approved 2026-10-28 |
+| Member 4 | Ahmed Hari | 202203669 | Approved 2026-10-28 |
 
-**Date approved:** `TODO`
+**Date approved:** 2026-10-28 (recorded in the decision log, `TEAM_TASKS.md` §11: target and scope agreed by all four members)
 
 ## Change-control rule
 

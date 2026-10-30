@@ -18,7 +18,9 @@ It has two jobs:
 ## Usage
 
 Run from the project root. On Windows use the `py` launcher (plain `python`
-may not be on the PATH in some shells):
+may not be on the PATH in some shells). If neither is found, call the
+interpreter by full path, e.g.
+`& "$env:LOCALAPPDATA\Programs\Python\Python314\python.exe" source\custom-script\evidence_toolkit.py ...`:
 
 ```powershell
 # Summarize a ZAP report + write CSV next to it
@@ -50,6 +52,18 @@ py source\custom-script\evidence_toolkit.py scan-summary --zap source\custom-scr
 
 Expected: 4 distinct alerts (1 High, 1 Medium, 1 Low, 1 Informational), sorted
 with High first. This run is what to screenshot for Appendix D.
+
+## Validation status (2026-10-30)
+
+- `evidence-index --check-secrets` was run on the **real** `evidence/` folder:
+  17 files indexed, 6 not matching the `WA-`/`EV-` naming convention (support
+  files such as `retest-record.md`, `csp-proxy.conf`), and 1 secret flag on
+  `WA-004-idor-basket.txt`, which is a false positive (redacted placeholder
+  `Bearer <B's JWT>`).
+- `scan-summary` has been validated **only on the synthetic sample**. The team's
+  real ZAP output (`EV-002`) was exported as HTML, not JSON. To run it on real
+  data, re-export the ZAP report as Traditional JSON. State this in the report
+  rather than implying it ran on real scan data.
 
 ## Notes for the report (Appendix D)
 

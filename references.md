@@ -9,7 +9,7 @@ compiled this list on 2026-10-28). Do not cite a source the team did not
 actually read.
 
 1. OWASP Foundation, *OWASP Web Security Testing Guide (WSTG)*. https://owasp.org/www-project-web-security-testing-guide/
-2. OWASP Foundation, *OWASP Top 10:2021*. https://owasp.org/Top10/
+2. OWASP Foundation, *OWASP Top 10:2025*. https://top10.owasp.org/2025/  (A01 Broken Access Control, A02 Security Misconfiguration — the numbering used in all finding records)
 3. B. Kimminich, *Pwning OWASP Juice Shop* (official companion guide) and the OWASP Juice Shop project. https://owasp.org/www-project-juice-shop/ and https://pwning.owasp-juice.shop/
 4. Nmap Project, *Nmap Reference Guide*. https://nmap.org/book/man.html
 5. OWASP Foundation, *OWASP ZAP Documentation*. https://www.zaproxy.org/docs/

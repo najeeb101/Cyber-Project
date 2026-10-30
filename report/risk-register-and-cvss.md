@@ -154,4 +154,3 @@ transparent downward adjustment, not a vector change.
   cross-origin credentialed reads (WA-002) are noted but **not** counted in the impact.
 - CVSS v3.1 is used throughout for consistency with the finding records. CVSS v4.0 vectors can
   be added if the rubric requires them; the qualitative ratings above would not change.
-- OWASP 2025 category numbering must be reconciled (see note in §2) before the final report.

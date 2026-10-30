@@ -1,13 +1,28 @@
 # Narrated Video Script
 
 **Target duration:** 10-11 minutes  
-**Maximum duration:** Less than 12 minutes
+**Maximum duration:** Less than 12 minutes  
+**Requirement:** continuous narration; opening frame shows Group ID, every member's name and QUID (hold it on screen for at least 5 seconds).
+
+**Opening frame text:**
+
+```text
+Web Application Security Assessment — OWASP Juice Shop
+CMPS 380 Cybersecurity Fundamentals, Fall 2026 — Group G02
+Najeeb Abdi        202307172
+Mohanad Elhabash   202314448
+Moaaz Mohamed      202207862
+Ahmed Hari         202203669
+```
 
 | Time | Screen/action | Narration | Owner |
 |---|---|---|---|
-| 0:00-0:30 | Group information and title | `TODO` | Member 1 |
-| 0:30-1:30 | Lab architecture and scope | `TODO` | Member 2 |
-| 1:30-3:00 | Reconnaissance | `TODO` | Member 3 |
-| 3:00-7:30 | Verified findings | `TODO` | Member 3 |
-| 7:30-9:00 | Risk and remediation/retest | `TODO` | Member 4 |
-| 9:00-10:30 | Impact, limitations, conclusion | `TODO` | Member 1/4 |
+| 0:00-0:30 | Opening frame (above), then `planning/scope-and-authorization.md` | "We are Group G02. Our project is a web application security assessment of OWASP Juice Shop, an online shop deliberately built with vulnerabilities for training. Everything you will see ran on one laptop, bound to 127.0.0.1, using only synthetic accounts. Nothing public was tested, and nothing destructive was done." | Member 1 |
+| 0:30-1:30 | `docker ps`, `docker port juice-shop`, `evidence/environment/isolation-check.txt`, app home page | "Juice Shop 20.3.0 runs in Docker. The port is published to 127.0.0.1 only, not 0.0.0.0, so nothing else on the network can reach it — and we verified that: a request to the laptop's LAN address on port 3000 fails. Docker makes the lab reproducible: one command rebuilds it, and a restart resets all data. The app is a realistic modern stack — an Angular front end, a Node.js REST API, and JWT login tokens. Our question: does a layered workflow — recon, automated scanning, manual testing, and retest — find and communicate weaknesses better than a scanner alone?" | Member 2 |
+| 1:30-3:00 | Live `nmap -sT -sV -Pn -p 3000 127.0.0.1`; then saved ZAP report `EV-002` summary | "Reconnaissance first. We scanned only port 3000 on loopback — the only authorized target. It is open, but Nmap labels it 'ppp?'. The raw fingerprint shows it is really an HTTP 200 from Juice Shop, so tool output must be interpreted, not trusted blindly. Next, OWASP ZAP, a free scanner and proxy. Its quick scan spidered and actively probed the app and reported two Medium alerts — a missing Content-Security-Policy and a cross-domain misconfiguration — and three Informational ones. We treat every alert as a hypothesis until it is verified manually. One informational alert, 'Modern Web Application', warns that the traditional spider can miss JavaScript-built routes — which matters for what comes next." | Member 3 |
+| 3:00-4:00 | `curl.exe -s -D - -o NUL http://127.0.0.1:3000/` and the CORS curl with `Origin: http://evil.example` | "WA-001: the home page headers include X-Frame-Options, but no Content-Security-Policy. CSP tells the browser which scripts may run; without it, any injected script would execute. It leaks nothing by itself, so we rate it Low to Medium. WA-002: pretending to be a hostile site, we get Access-Control-Allow-Origin star — any website may read the response. Browsers will not send login cookies with a wildcard, so only public data is exposed. We did not prove more, so we rate it Low." | Member 3 |
+| 4:00-5:15 | Browser on `http://127.0.0.1:3000/ftp`; `curl` returning HTTP 200 for `acquisitions.md` | "WA-003 was found by manual testing; ZAP did not report it. Without logging in, /ftp lists eleven internal files — backup files, a business document, and a KeePass password database — all downloadable. This is our most severe finding: CVSS 7.5, High. No account, one request, high confidentiality impact. For ethical reasons we did not open or crack any of the files; we only recorded that they are exposed." | Member 3 |
+| 5:15-7:30 | PowerShell: register two synthetic users, log in, request A's basket with no token (401), then with B's token (200) | "WA-004, broken access control — OWASP's number one risk. We create two synthetic users, A and B. Without a token, A's basket returns 401, so the server checks who you are. Now, as user B with B's own valid token, we request A's basket id — and receive 200 with A's basket and A's user id. The server never checks that the basket belongs to the caller. This is an IDOR. Because basket ids are small sequential numbers, an attacker could read every customer's basket. CVSS 6.5, but overall risk High because anyone can register. We tested reading only; modifying another basket is plausible but untested, so we do not claim it." | Member 3 |
+| 7:30-8:15 | `report/risk-register-and-cvss.md` §2 | "We prioritised with two lenses: a CVSS v3.1 base score with the full vector, so anyone can recompute it, and a likelihood-times-impact rating for this context. Where they differ — for example CORS, 5.3 in CVSS but Low in practice — we explain why instead of changing the vector. Fix order: /ftp, then the IDOR, then CORS." | Member 4 |
+| 8:15-9:30 | `csp-proxy.conf`; same curl on `:3000` and `:8080`; DevTools response headers; `WA-001-before.png` / `WA-001-after.png` | "We fixed WA-001 the way companies do: an nginx reverse proxy in front of the app, also on localhost, that adds a Content-Security-Policy. script-src 'self' allows only our own scripts; frame-ancestors stops framing; object-src none blocks plugins. Same command as before: port 3000, direct — no CSP. Port 8080, through the proxy — CSP present. Server: nginx proves the traffic went through the proxy, and the content length is identical, 9984 bytes, so the app still works. Residual risk: port 3000 stays open for comparison, inline styles are allowed because Angular needs them, and CSP limits XSS damage without fixing XSS itself." | Member 4 |
+| 9:30-10:30 | `findings/findings-register.md` | "We verified four findings in OWASP's top two 2025 categories, and fixed and retested one. The answer to our question: the layers are complementary. ZAP found two issues quickly, but the two most serious — the /ftp exposure and the IDOR — were found only by manual testing. Limitations: a training app with synthetic data, one scan profile, a read-only IDOR test, and one fix applied. Next, we would fix and retest /ftp and the IDOR. Every claim in this video maps to an evidence file in our repository. Thank you." | Member 1/4 |
