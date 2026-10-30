@@ -377,11 +377,15 @@ Use this table when findings are selected. One member owns the technical record,
 
 | Finding ID | Finding title | Technical owner | Risk reviewer | Evidence complete | Retested |
 |---|---|---|---|---|---|
-| WA-001 | `TODO` | Member 3 | Member 4 | `TODO` | `TODO` |
-| WA-002 | `TODO` | Member 3 | Member 1 | `TODO` | `TODO` |
-| WA-003 | `TODO` | Member 3 | Member 4 | `TODO` | `TODO` |
-| WA-004 | `Optional` | Member 3 | Member 1 | `TODO` | `TODO` |
-| WA-005 | `Optional` | Member 3 | Member 4 | `TODO` | `TODO` |
+| WA-001 | Missing Content-Security-Policy header | Member 3 | Member 4 | Yes | Yes (remediated 2026-10-30) |
+| WA-002 | Overly permissive CORS (`Access-Control-Allow-Origin: *`) | Member 3 | Member 1 | Yes | No |
+| WA-003 | Unauthenticated `/ftp` directory listing exposes internal files | Member 3 | Member 4 | Yes | No |
+| WA-004 | Broken object-level access control (IDOR) on `/rest/basket/:id` | Member 3 | Member 4 | Yes | No |
+| WA-005 | Not used (four findings selected) | — | — | — | — |
+
+Risk reviewers above match the `Risk reviewer` field in each `findings/WA-00x.md` record.
+WA-001 is the remediated-and-retested finding required by the rubric; see
+`evidence/05-remediation-retest/`. Retesting WA-002/003/004 is optional if time allows.
 
 Do not fill this table with findings that were not reproduced.
 
@@ -401,9 +405,10 @@ Use a shared decision log:
 
 | Date | Decision | Reason | Members agreeing |
 |---|---|---|---|
-| `TODO` | Selected target | `TODO` | `TODO` |
-| `TODO` | Selected findings | `TODO` | `TODO` |
-| `TODO` | Contribution percentages | `TODO` | `TODO` |
+| 2026-10-28 | Target: OWASP Juice Shop 20.3.0 in Docker, bound to `127.0.0.1:3000` | Deliberately vulnerable, isolatable on loopback, and reproducible; meets the course safe-lab requirement | All four |
+| 2026-10-28 | Selected findings WA-001 to WA-004 | Each was manually reproduced and covers Security Misconfiguration (A02:2025) and Broken Access Control (A01:2025) | All four |
+| 2026-10-30 | Contribution percentages 25 / 25 / 25 / 25 | Reflects equal verified workload across the four roles | All four |
+| 2026-10-30 | Remediate and retest WA-001 (CSP) via a loopback nginx reverse proxy | Safe, reversible, and gives a clean before/after; satisfies the rubric's remediation-and-retest requirement | All four |
 
 If members disagree about contribution percentages, record the disagreement and contact the instructor according to the course instructions.
 
