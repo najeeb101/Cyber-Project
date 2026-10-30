@@ -14,11 +14,11 @@ actually reports.
 | Git | 2.52.0.windows.1 |
 | Target application | OWASP Juice Shop (`bkimminich/juice-shop`) |
 | Target image tag/digest Juice Shop 20.3.0, `bkimminich/juice-shop:latest`, digest `sha256:42843723a7bf4246aa5d63c324978b17ef296ac78434aeddd34c427bfb5853f4` (pulled 2026-10-28) |
-| Browser | `TODO: name + version used for testing` |
+| Browser | Google Chrome 156.0.8078.48 |
 | Nmap | 7.993 (Npcap 1.90), installed 2026-10-28 |
 | OWASP ZAP | 2.17.0 (winget `ZAP.ZAP`, with Temurin 17 JRE), installed 2026-10-28 |
-| Burp Suite Community | `TODO: record version if used` |
-| Nikto, if used | `TODO: record version if used (optional)` |
+| Burp Suite Community | Not used in the recorded assessment |
+| Nikto, if used | Not used in the recorded assessment |
 | Network mode | localhost — container bound to `127.0.0.1` only |
 | Target URL | `http://127.0.0.1:3000` |
 
