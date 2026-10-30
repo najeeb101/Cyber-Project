@@ -21,7 +21,7 @@
 | **Total** | | **100%** |
 
 - **Contribution agreement:** all four members agreed this distribution on 2026-10-30.
-- **Main-report word count (sections 2–11, excluding the Appendix):** ≈2,730 including figure captions (recount in Word after the final edit)
+- **Main-report word count (sections 2–11, excluding the Appendix):** 2,581 (Microsoft Word count, 30 October 2026)
 - **Submission date:** **[TEAM]** date of upload (deadline: 14 November 2026, midnight)
 
 ---
@@ -197,7 +197,7 @@ alerts (Figure 3). We manually confirmed the two Medium alerts, which became WA-
 We reviewed the Informational alerts and did not promote them. One of them ("Modern Web
 Application") warns that the traditional spider may miss routes built by JavaScript.
 
-![Figure 3 – ZAP alert summary (EV-002)](../evidence/06-screenshots/EV-002-zap-alert-summary.png)
+![Figure 3 – ZAP alert summary (EV-002)](figures/fig-EV-002-zap-summary.png)
 
 *Figure 3 – OWASP ZAP 2.17.0 alert summary (EV-002).*
 
@@ -217,7 +217,7 @@ and a KeePass credential store (`incident-support.kdbx`). The files download wit
 file. The expected behaviour is that internal, backup, and credential files are never served
 and directory listing is disabled. This is our highest-impact finding.
 
-![Figure 4 – Unauthenticated /ftp listing (WA-003)](../evidence/06-screenshots/WA-003-ftp-listing.png)
+![Figure 4 – Unauthenticated /ftp listing (WA-003)](figures/fig-WA-003-ftp.png)
 
 *Figure 4 – Live capture of `http://127.0.0.1:3000/ftp` with no session (WA-003).*
 
@@ -1056,6 +1056,9 @@ unreachable.*
 **How the figures were made.** Figures 3, 4, and B1 are live captures:
 - Figures 4 and B1 come from the running loopback lab.
 - Figure 3 is taken from the saved ZAP report.
+
+Figures 3 and 4 are cropped to the relevant tables and listing. The uncropped captures are
+indexed in E.1.
 
 Figures 2, 5, E2, E3, and E4 render the **unaltered** text of the named evidence file as a
 terminal-style panel, for readability. In Figure 2, only the long service-fingerprint block is

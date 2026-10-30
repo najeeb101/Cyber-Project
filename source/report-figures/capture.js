@@ -108,6 +108,12 @@ const arch = `<html><head><style>${css}
   await live.screenshot({ path: path.join(SHOTS, 'WA-003-ftp-listing.png'), clip: { x: 0, y: 0, width: 1280, height: 260 } });
   console.log('live ftp');
 
+  // Tighter, sharper crop of the same listing for the report body
+  const ftp = await browser.newPage({ viewport: { width: 1280, height: 400 }, deviceScaleFactor: 2 });
+  await ftp.goto('http://127.0.0.1:3000/ftp', { waitUntil: 'networkidle' });
+  await ftp.screenshot({ path: path.join(FIGS, 'fig-WA-003-ftp.png'), clip: { x: 90, y: 70, width: 900, height: 165 } });
+  console.log('figure ftp crop');
+
   // Saved ZAP report: summary + alert list
   const zap = await browser.newPage({ viewport: { width: 1100, height: 800 } });
   await zap.goto('file:///' + path.join(ROOT, 'evidence/automated-scans/EV-002-zap-scan-raw.html').replace(/\\/g, '/'));
@@ -122,6 +128,22 @@ const arch = `<html><head><style>${css}
   await zap.screenshot({ path: path.join(SHOTS, 'EV-002-zap-alert-summary.png'), fullPage: true,
     clip: { x: 0, y: top, width: 1100, height: Math.max(200, bottom - top) } });
   console.log('zap summary', top, bottom);
+
+  // Report-body version: hide the Insights and Sequences sections, keep the two alert tables
+  const zap2 = await browser.newPage({ viewport: { width: 840, height: 800 }, deviceScaleFactor: 2 });
+  await zap2.goto('file:///' + path.join(ROOT, 'evidence/automated-scans/EV-002-zap-scan-raw.html').replace(/\\/g, '/'));
+  const box = await zap2.evaluate(() => {
+    const hs = [...document.querySelectorAll('h3')];
+    const find = s => hs.find(e => e.textContent.trim().startsWith(s));
+    const to = hs.find(e => e.textContent.trim() === 'Alerts');
+    for (let n = find('Insights'); n && n !== to; n = n.nextElementSibling) n.style.display = 'none';
+    const a = find('Summary of Alerts').getBoundingClientRect();
+    const b = find('Alert Detail').getBoundingClientRect();
+    return { top: a.top + window.scrollY - 10, bottom: b.top + window.scrollY };
+  });
+  await zap2.screenshot({ path: path.join(FIGS, 'fig-EV-002-zap-summary.png'), fullPage: true,
+    clip: { x: 0, y: box.top, width: 640, height: box.bottom - box.top } });
+  console.log('figure zap crop');
 
   await browser.close();
 })();
