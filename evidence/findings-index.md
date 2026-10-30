@@ -13,3 +13,10 @@ All evidence captured 2026-10-28 against OWASP Juice Shop 20.3.0 on `127.0.0.1:3
 | WA-003 evidence | `evidence/manual-tests/WA-003-ftp-exposure.txt` | WA-003 | Unauthenticated `/ftp` listing and file download headers (file contents deliberately not stored) | Yes | Member 3 |
 | WA-004 evidence | `evidence/manual-tests/WA-004-idor-basket.txt` | WA-004 | Two-account IDOR test: user B's token retrieves user A's basket via `/rest/basket/:id` | Yes (JWTs redacted) | Member 3 |
 | EV-003 | `evidence/05-remediation-retest/WA-001-before.txt`, `WA-001-after.txt`, `retest-record.md` | WA-001 retest | Direct access lacks CSP; proxy access returns the CSP header while preserving HTTP 200 and page length | Yes | Member 3 |
+| ENV-003 | `evidence/06-screenshots/ENV-003-juice-shop-home.png` | Environment | Live capture (2026-10-30): Juice Shop healthy on `127.0.0.1:3000` | Yes (no session) | Member 2 |
+| EV-002 screenshot | `evidence/06-screenshots/EV-002-zap-alert-summary.png` | WA-001, WA-002 | Capture of the saved ZAP report's alert summary (0 High, 2 Medium, 3 Informational) | Yes | Member 3 |
+| WA-003 screenshot | `evidence/06-screenshots/WA-003-ftp-listing.png` | WA-003 | Live capture (2026-10-30): unauthenticated `/ftp` listing with 11 entries; no file opened | Yes | Member 3 |
+
+Report figures in `report/figures/` render the unaltered text of the evidence files above as
+terminal-style panels, and include the architecture diagram. They are produced by
+`source/report-figures/capture.js`.
