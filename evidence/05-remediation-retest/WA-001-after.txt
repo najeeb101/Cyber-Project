@@ -1,0 +1,26 @@
+AFTER remediation - through the nginx reverse proxy that injects CSP.
+Captured 2026-10-30 against http://127.0.0.1:8080/ (isolated local lab). No credentials used.
+Remediation: nginx:1.27-alpine reverse proxy (container "csp-proxy") in front of juice-shop.
+
+> curl.exe -s -D - -o NUL http://127.0.0.1:8080/
+HTTP/1.1 200 OK
+Server: nginx/1.27.5
+Date: Fri, 30 Oct 2026 11:41:04 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 9984
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Feature-Policy: payment 'self'
+X-Recruiting: /#/jobs
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Wed, 28 Oct 2026 16:56:40 GMT
+ETag: W/"2700-1a183714223"
+Vary: Accept-Encoding
+Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'self'; object-src 'none'
+
+Check: Content-Security-Policy present? YES - header injected by the reverse proxy.
+Result: Remediation effective for traffic through the proxy. Content-Length matches the
+before capture (9984), confirming the same page is served - only the headers changed.

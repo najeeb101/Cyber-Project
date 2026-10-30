@@ -12,10 +12,10 @@ This document divides the project between four members. Replace `Member 1` throu
 
 | Member | Name | QUID | Main role | Backup role |
 |---|---|---|---|---|
-| Member 1 | `TODO: name` | `TODO: QUID` | Project coordinator and methodology | Report editor |
-| Member 2 | `TODO: name` | `TODO: QUID` | Lab and environment engineer | Demonstration backup |
-| Member 3 | `TODO: name` | `TODO: QUID` | Security tester and evidence owner | Tool demonstrator |
-| Member 4 | `TODO: name` | `TODO: QUID` | Risk, remediation, report, and media | Presentation coordinator |
+| Member 1 | Najeeb Abdi | 202307172 | Project coordinator and methodology | Report editor |
+| Member 2 | Mohanad Elhabash | 202314448 | Lab and environment engineer | Demonstration backup |
+| Member 3 | Moaaz Mohamed | 202207862 | Security tester and evidence owner | Tool demonstrator |
+| Member 4 | Ahmed Hari | 202203669 | Risk, remediation, report, and media | Presentation coordinator |
 
 ### Contribution percentages
 
@@ -23,11 +23,11 @@ The percentages must reflect actual work and must add up to exactly 100%.
 
 | Member | Planned contribution | Final agreed contribution |
 |---|---:|---:|
-| Member 1 | 25% | `TODO: %` |
-| Member 2 | 25% | `TODO: %` |
-| Member 3 | 25% | `TODO: %` |
-| Member 4 | 25% | `TODO: %` |
-| **Total** | **100%** | **TODO: verify = 100%** |
+| Member 1 | 25% | 25% |
+| Member 2 | 25% | 25% |
+| Member 3 | 25% | 25% |
+| Member 4 | 25% | 25% |
+| **Total** | **100%** | **100%** |
 
 ---
 
